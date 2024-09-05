@@ -1,4 +1,4 @@
-class Validators {
+class CCLValidators {
   /// Validate given value
   ///
   /// * [value] : any value
