@@ -1,2 +1,3 @@
-- chore(Release): v0.1.1 (Pasan Eramusugoda)
-- docs(ReadMe): Updates (Pasan Eramusugoda)
+- chore(Release): v0.2.0 (Pasan Eramusugoda)
+- refactor(Validators): Change class name which conflicts with reactive_forms validators class (Pasan Eramusugoda)
+- docs(Release): Change log and release note (Pasan Eramusugoda)
