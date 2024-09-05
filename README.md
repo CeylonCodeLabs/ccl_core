@@ -1,88 +1,149 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# flutter_support_pack
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
+[![pub package](https://img.shields.io/pub/v/ccl_core.svg)](https://pub.dartlang.org/packages/ccl_core)
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
+Commonly used features in on package to reduce number of imports and dependency issues
 
-# ccl_services
-
-A Flutter package to reduce boilerplate code in your daily development by providing streamlined
-services for common tasks.
-
-## Features
-
-* **Secure Storage:** Easily store and retrieve data securely using the `SecureStorageService`.
-* **Locale Management:**  Streamline locale handling and updates with the `LocalizationService`.
-* **Reduced Boilerplate:**  Eliminate repetitive code and focus on building your app's core
-  functionality.
-* **Integration with Stacked:**  Seamlessly integrates with the Stacked architecture for dependency
-  injection and state management.
-
-## Getting started
-
-Add `ccl_services` to your `pubspec.yaml` file:
-yaml dependencies: ccl_services: ^latest_version
-
-Then, run `flutter pub get` to install the package.
+I have discontinued the flutter_support_pack in favor of this package.
 
 ## Usage
 
-**1. Register Services with Stacked:**
+In the `pubspec.yaml` of your flutter project, add the following dependency:
+
+```yaml
+dependencies:
+  ...
+  ccl_core: [USE LATEST VERSION]
+```
+
+In your library add the following import:
 
 ```dart
+import 'package:ccl_core/ccl_core.dart';
+```
+
+## Packages (more to come)
+
+## Validators
+
+Validators api provide you to validate form fields as well as other text validations.
+
+### validateRequired
+
+Only you need to pass the value that needs be get validated.
+
+### validateEmail
+
+Here you can pass an string value which needs to be get validated as an email.
+
+### validateMobileNumber
+
+Pass a string value and other parameters as per requirement get validated.
+
+#### Properties
+
+| Property        | Type   | Default Value | Description                                                                                    |
+|:----------------|:-------|:--------------|:-----------------------------------------------------------------------------------------------|
+| value           | String | null          | The phone number. By default validate for SL phone numbers. Use pattern for any custom numbers |
+| allowLandNumber | bool   | false         | Enable land number validation. Only avaiable for SL country format                             |
+| optional        | bool   | false         | Sets the field as an optional                                                                  |
+| pattern         | String | null          | Pass a custom pattern to validate                                                              |
+
+### validateNIC
+
+Pass a string value and this method only works for SL.
+
+### validateConfirmPassword
+
+Validates current field value against provided value.
+
+#### Properties
+
+| Property | Type   | Default Value | Description          |
+|:---------|:-------|:--------------|:---------------------|
+| value    | String | null          | Field password value |
+| password | String | null          | Existing password    |
+
+#### Example Useage
+
+```
+TextFormField(
+  controller: newPasswordController,
+  focusNode: focusNewPassword,
+  keyboardType: TextInputType.visiblePassword,
+  obscureText: true,
+  maxLines: 1,
+  textInputAction: TextInputAction.next,
+  validator: (value) =>
+      Validators.validateConfirmPassword(
+    value,
+    [currentPassword],
+  ),
+  decoration: InputDecoration(
+    labelText: 'New Password',
+  ),
+),
+```
+
+### validatePinCode
+
+Validates a pin code.
+
+#### Properties
+
+| Property | Type   | Default Value | Description                       |
+|:---------|:-------|:--------------|:----------------------------------|
+| value    | String | null          | Pin code value                    |
+| length   | int    | 6             | Define the length of the pin code |
+
+#### **SL means Sri Lanka**
+
+## Log
+
+Log api provide you the easy way to log your info, debug, warn and error logs. Also capable of log to flutter crashlytics.
+
+### Properties
+
+| Property                           | Type | Default Value | Description                                                                                                                  |
+|:-----------------------------------|:-----|:--------------|:-----------------------------------------------------------------------------------------------------------------------------|
+| logInDebugMode                     | bool | true          | Enable logging in debug mode (kDebugMode)                                                                                    |
+| logInReleaseMode                   | bool | false         | Enable logging in release mode (kReleaseMode)                                                                                |
+| enableFirebaseCrashlyticsInDebug   | bool | false         | Enable Firebase Crashlytics logging in debug mode (kDebugMode). If enabled you may initialize Firebase before Log.init()     |
+| enableFirebaseCrashlyticsInRelease | bool | false         | Enable Firebase Crashlytics logging in release mode (kReleaseMode). If enabled you may initialize Firebase before Log.init() |
+
+### Initialize
+You may initialize in the main function
+
+```
+
 void main() {
-  setupLocator();
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize Firebase app if only using Firebase Crashlytics
+  // await Firebase.initializeApp();
+
+  // Initialize Log
+  Log.init(
+        logInDebugMode: true,
+        logInReleaseMode: false,
+        enableFirebaseCrashlyticsInDebug: false,
+        enableFirebaseCrashlyticsInRelease: false);
+
   runApp(MyApp());
 }
 
-void setupLocator() {
-  StackedLocator.instance..registerLazySingleton(() =>
-      SecureStorageService())..registerLazySingleton(() => LocalizationService());
-}
 ```
 
-**2. Access Services:**
+### Example Usage
 
-```dart
-class MyViewModel extends BaseViewModel {
-  final _secureStorageService = StackedLocator.instance.get<SecureStorageService>();
-  final _localizationService = StackedLocator.instance.get<LocalizationService>();
-// ... use the services in your view model ... }
+You can use references parameter to mention any extra debug information to easily recognise in log
+
 ```
 
-**Example: Storing and Retrieving User Preferences**
+Log.i(TAG, 'initialized', references: ['initState']);
+Log.d(TAG, '$_counter', references: ['_incrementCounter', 'begin']);
+Log.w(TAG, 'about to hit the level => $_counter', references: ['_incrementCounter']);
+Log.e(TAG, '$_counter', references: ['_incrementCounter'], exception: e);
 
-```dart 
-// Store a user preference 
-await _secureStorageService.setString('theme', 'dark');
-// Retrieve a user preference 
-final theme = await _secureStorageService.getString('theme') ;
 ```
 
-**Example: Changing and Observing Locale**
-
-```dart
-// Change the locale 
-final locale = Locale('es');
-_localizationService.onLocaleChanged(locale);
-// Observe locale changes 
-_localizationService.localeController.listen((locale) {
-// Update UI based on the new locale 
-});
-```
-
-## Additional information
-
-For more detailed examples and usage scenarios, please refer to the `/example` folder.
-
-If you encounter any issues or have suggestions for improvement, please feel free to open an issue
-on the GitHub repository.
-
-Contributions are welcome!

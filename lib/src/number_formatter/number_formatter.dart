@@ -18,9 +18,9 @@ class NumberFormatter {
 
   static NumberFormatter _getInstance() {
     assert(
-    _instance != null,
-    '\nEnsure to initialize NumberFormatter before accessing it.'
-        '\nPlease execute the init method : NumberFormatter.init()',
+      _instance != null,
+      '\nEnsure to initialize NumberFormatter before accessing it.'
+      '\nPlease execute the init method : NumberFormatter.init()',
     );
 
     return _instance!;
