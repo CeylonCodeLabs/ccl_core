@@ -1,0 +1,23 @@
+name: ccl_core
+description: "CeylonCodeLabs Core Extension in favor of flutter_support_pack"
+version: 0.1.0
+homepage: https://github.com/CeylonCodeLabs/ccl_packages
+
+environment:
+  sdk: '>=3.2.0 <4.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  firebase_core: '>=2.4.1'
+  firebase_crashlytics: '>=3.0.11'
+  intl: '>=0.17.0'
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+scripts:
+  gen_docs: git-chglog -o CHANGELOG.md && git log --pretty="- %s (%an)" $(git describe --tags --abbrev=0 $(git rev-list --tags --skip=1 --max-count=1))..HEAD > release_note.txt
