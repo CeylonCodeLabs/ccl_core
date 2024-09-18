@@ -1,4 +1,20 @@
 
+<a name="v0.3.0"></a>
+## [v0.3.0](https://github.com/pasaneramusugoda/flutter_support_pack/compare/v0.2.0...v0.3.0) (2024-09-18)
+
+### Chore
+
+* **Release:** v0.3.0
+
+### Docs
+
+* **Release:** Change log and release note
+
+### Refactor
+
+* **Extension:** Add nullable date time format extension
+
+
 <a name="v0.2.0"></a>
 ## [v0.2.0](https://github.com/pasaneramusugoda/flutter_support_pack/compare/v0.1.1...v0.2.0) (2024-09-05)
 
