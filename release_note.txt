@@ -1,3 +1,3 @@
-- chore(Release): v0.4.1 (Pasan Eramusugoda)
-- refactor(Package): Updates (Pasan Eramusugoda)
+- chore(Release): v0.4.3 (Pasan Eramusugoda)
+- fix(DateTime): Syntax update (Pasan Eramusugoda)
 - docs(ReadMe): Updates (Pasan Eramusugoda)
