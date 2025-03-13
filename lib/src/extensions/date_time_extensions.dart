@@ -1,8 +1,31 @@
 import 'package:intl/intl.dart';
 
 extension DateTimeExtension on DateTime {
+
+  /// Formats the DateTime according to the provided pattern and optional locale.
+  ///
+  /// Example:
+  /// ```dart
+  /// DateTime.now().format('yyyy-MM-dd') // 2023-03-13
+  /// ```
   String format(String pattern, [String? locale]) =>
       DateFormat(pattern, locale).format(this);
+
+  /// Returns a DateTime with only the year, month, and day components.
+  /// Time is set to midnight (00:00:00).
+  DateTime? date() => DateTime(year, month, day);
+
+  /// Returns a [DateTime] representing the end of the current day.
+  ///
+  /// The time is set to 23:59:59.999 (11:59:59 PM with 999 milliseconds).
+  ///
+  /// Example:
+  /// ```dart
+  /// final now = DateTime.now();
+  /// final endOfDay = now.dateEnd();
+  /// print(endOfDay); // Outputs: 2025-03-13 23:59:59.999
+  /// ```
+  DateTime dateEnd() => DateTime(year, month, day, 23, 59, 59, 999);
 
   //region date
   //region date month year
@@ -100,8 +123,37 @@ extension DateTimeExtension on DateTime {
 }
 
 extension NullDateTimeExtension on DateTime? {
+
+  /// Formats the DateTime according to the provided pattern and optional locale.
+  ///
+  /// Example:
+  /// ```dart
+  /// DateTime.now().format('yyyy-MM-dd') // 2023-03-13
+  /// ```
+  ///
+  /// Returns `null` if the [DateTime] instance is `null`.
   String? format(String pattern, [String? locale]) =>
       this == null ? null : DateFormat(pattern, locale).format(this!);
+
+  /// Returns a DateTime with only the year, month, and day components.
+  /// Time is set to midnight (00:00:00).
+  ///
+  /// Returns `null` if the [DateTime] instance is `null`.
+  DateTime? date() => this == null ? null : DateTime(this!.year, this!.month, this!.day);
+
+  /// Returns a [DateTime] representing the end of the current day.
+  ///
+  /// The time is set to 23:59:59.999 (11:59:59 PM with 999 milliseconds).
+  ///
+  /// Example:
+  /// ```dart
+  /// final now = DateTime.now();
+  /// final endOfDay = now.dateEnd();
+  /// print(endOfDay); // Outputs: 2025-03-13 23:59:59.999
+  /// ```
+  ///
+  /// Returns `null` if the [DateTime] instance is `null`.
+  DateTime? dateEnd() => this == null ? null : DateTime(this!.year, this!.month, this!.day, 23, 59, 59, 999);
 
   //region date
   //region date month year
