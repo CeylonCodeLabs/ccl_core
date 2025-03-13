@@ -12,7 +12,7 @@ extension DateTimeExtension on DateTime {
 
   /// Returns a DateTime with only the year, month, and day components.
   /// Time is set to midnight (00:00:00).
-  DateTime? date() => DateTime(year, month, day);
+  DateTime date() => DateTime(year, month, day);
 
   /// Returns a [DateTime] representing the end of the current day.
   ///
