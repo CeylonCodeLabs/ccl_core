@@ -1,7 +1,6 @@
 import 'package:intl/intl.dart';
 
 extension DateTimeExtension on DateTime {
-
   /// Formats the DateTime according to the provided pattern and optional locale.
   ///
   /// Example:
@@ -123,7 +122,6 @@ extension DateTimeExtension on DateTime {
 }
 
 extension NullDateTimeExtension on DateTime? {
-
   /// Formats the DateTime according to the provided pattern and optional locale.
   ///
   /// Example:
@@ -139,7 +137,8 @@ extension NullDateTimeExtension on DateTime? {
   /// Time is set to midnight (00:00:00).
   ///
   /// Returns `null` if the [DateTime] instance is `null`.
-  DateTime? date() => this == null ? null : DateTime(this!.year, this!.month, this!.day);
+  DateTime? date() =>
+      this == null ? null : DateTime(this!.year, this!.month, this!.day);
 
   /// Returns a [DateTime] representing the end of the current day.
   ///
@@ -153,7 +152,9 @@ extension NullDateTimeExtension on DateTime? {
   /// ```
   ///
   /// Returns `null` if the [DateTime] instance is `null`.
-  DateTime? dateEnd() => this == null ? null : DateTime(this!.year, this!.month, this!.day, 23, 59, 59, 999);
+  DateTime? dateEnd() => this == null
+      ? null
+      : DateTime(this!.year, this!.month, this!.day, 23, 59, 59, 999);
 
   //region date
   //region date month year
