@@ -1,3 +1,4 @@
-- chore(Release): v0.4.3 (Pasan Eramusugoda)
-- fix(DateTime): Syntax update (Pasan Eramusugoda)
+- chore(Release): v0.5.0 (Pasan Eramusugoda)
+- chore(Deps): Upgrade flutter_lints to v6.0.0 (Pasan Eramusugoda)
+- feat(Log): Integrate Firebase Crashlytics for global error reporting (Pasan Eramusugoda)
 - docs(ReadMe): Updates (Pasan Eramusugoda)

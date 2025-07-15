@@ -1,4 +1,21 @@
 
+<a name="v0.5.0"></a>
+## [v0.5.0](https://github.com/pasaneramusugoda/flutter_support_pack/compare/v0.4.3...v0.5.0) (2025-07-15)
+
+### Chore
+
+* **Deps:** Upgrade flutter_lints to v6.0.0
+* **Release:** v0.5.0
+
+### Docs
+
+* **ReadMe:** Updates
+
+### Feat
+
+* **Log:** Integrate Firebase Crashlytics for global error reporting
+
+
 <a name="v0.4.3"></a>
 ## [v0.4.3](https://github.com/pasaneramusugoda/flutter_support_pack/compare/v0.4.2...v0.4.3) (2025-03-13)
 
