@@ -1,8 +1,11 @@
 import 'dart:developer' as developer;
 import 'dart:isolate';
 
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
+import 'package:googleapis_auth/auth_io.dart';
+
+import 'error_logging_provider.dart';
+import 'error_logging_provider_factory.dart';
 
 ///
 /// Live Templates
@@ -23,15 +26,14 @@ class Log {
   final bool _logInDebugMode;
   final bool _logInProfileMode;
   final bool _logInReleaseMode;
-  final bool _enableFirebaseCrashlyticsInDebug;
-  final bool _enableFirebaseCrashlyticsInRelease;
+  final ErrorLoggingProvider _errorLoggingProvider;
 
   Log._internal(
-      this._logInDebugMode,
-      this._logInProfileMode,
-      this._logInReleaseMode,
-      this._enableFirebaseCrashlyticsInDebug,
-      this._enableFirebaseCrashlyticsInRelease) {
+    this._logInDebugMode,
+    this._logInProfileMode,
+    this._logInReleaseMode,
+    this._errorLoggingProvider,
+  ) {
     _instance = this;
   }
 
@@ -48,13 +50,17 @@ class Log {
       if (kDebugMode) {
         FlutterError.dumpErrorToConsole(errorDetails);
       }
-      FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+      _instance?._errorLoggingProvider.recordError(
+        errorDetails.exception,
+        errorDetails.stack,
+        fatal: true,
+      );
     };
 
     // Catch errors that occur outside of the Flutter framework in the Isolate that the Flutter app runs on.
     // This is crucial for catching errors like those from platform channels or other asynchronous code.
     PlatformDispatcher.instance.onError = (error, stack) {
-      FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+      _instance?._errorLoggingProvider.recordError(error, stack, fatal: true);
       return true; // Return true to indicate that the error has been handled.
     };
 
@@ -63,7 +69,7 @@ class Log {
     Isolate.current.addErrorListener(
       RawReceivePort((pair) async {
         final List<dynamic> errorAndStacktrace = pair;
-        await FirebaseCrashlytics.instance.recordError(
+        await _instance?._errorLoggingProvider.recordError(
           errorAndStacktrace.first,
           errorAndStacktrace.last,
           fatal: true,
@@ -78,20 +84,31 @@ class Log {
   /// [logInReleaseMode] Enable logging in release mode ([kReleaseMode]).\nDefault value is false.
   /// [enableFirebaseCrashlyticsInDebug] Enable Firebase Crashlytics logging in debug mode ([kDebugMode]).\nDefault value is false.
   /// [enableFirebaseCrashlyticsInRelease] Enable Firebase Crashlytics logging in release mode ([kReleaseMode]).\nDefault value is false.
-  static void init({
+  /// [googleCloudProjectId] The project id of the google cloud project. This is required for web apps.
+  /// [googleAuthClient] The google auth client. This is required for web apps.
+  static Future<void> init({
     bool logInDebugMode = true,
     bool logInProfileMode = true,
     bool logInReleaseMode = false,
     bool enableFirebaseCrashlyticsInDebug = false,
     bool enableFirebaseCrashlyticsInRelease = false,
-  }) {
+    String? googleCloudProjectId,
+    Future<AutoRefreshingAuthClient>? googleAuthClient,
+  }) async {
     _instance = _instance ??
         Log._internal(
-            logInDebugMode,
-            logInProfileMode,
-            logInReleaseMode,
-            enableFirebaseCrashlyticsInDebug,
-            enableFirebaseCrashlyticsInRelease);
+          logInDebugMode,
+          logInProfileMode,
+          logInReleaseMode,
+          await getErrorLoggingProvider(
+            isWebApp: kIsWeb,
+            googleCloudProjectId: googleCloudProjectId ?? '',
+            enableFirebaseCrashlyticsInDebug: enableFirebaseCrashlyticsInDebug,
+            enableFirebaseCrashlyticsInRelease:
+                enableFirebaseCrashlyticsInRelease,
+            googleAuthClient: googleAuthClient,
+          ),
+        );
   }
 
   static void _checkInstance() {
@@ -111,8 +128,8 @@ class Log {
     final ref = references != null && references.isNotEmpty
         ? ' : ${references.join(' => ')}'
         : '';
-    final name = 'INFO: $tag$ref';
-    _log(name, msg);
+    final name = '$tag$ref';
+    _log(name, msg, severity: 'INFO');
   }
 
   /// Logging debug
@@ -124,8 +141,8 @@ class Log {
     final ref = references != null && references.isNotEmpty
         ? ' : ${references.join(' => ')}'
         : '';
-    final name = 'DEBUG: $tag$ref';
-    _log(name, msg);
+    final name = '$tag$ref';
+    _log(name, msg, severity: 'DEBUG');
   }
 
   /// Logging warning
@@ -140,8 +157,8 @@ class Log {
     final ref = references != null && references.isNotEmpty
         ? ' : ${references.join(' => ')}'
         : '';
-    final name = 'WARN: $tag$ref';
-    _log(name, msg, exception: exception, stackTrace: stackTrace);
+    final name = '$tag$ref';
+    _log(name, msg, exception: exception, stackTrace: stackTrace, severity: 'WARNING');
   }
 
   /// Logging an error
@@ -156,18 +173,22 @@ class Log {
     final ref = references != null && references.isNotEmpty
         ? ' : ${references.join(' => ')}'
         : '';
-    final name = 'ERROR: $tag$ref';
-    _log(name, msg, exception: exception, stackTrace: stackTrace);
+    final name = '$tag$ref';
+    _log(name, msg, exception: exception, stackTrace: stackTrace, severity: 'ERROR');
   }
 
-  static Future<void> setUserIdentifier(String identifier) =>
-      FirebaseCrashlytics.instance.setUserIdentifier(identifier);
+  static Future<void> setUserIdentifier(String identifier) {
+    _checkInstance();
+    return _instance!._errorLoggingProvider.setUserIdentifier(identifier);
+  }
 
-  static Future<void> setFirebaseCustomKey(String key, Object value) =>
-      FirebaseCrashlytics.instance.setCustomKey(key, value);
+  static Future<void> setCustomKey(String key, Object value) {
+    _checkInstance();
+    return _instance!._errorLoggingProvider.setCustomKey(key, value);
+  }
 
   static void _log(String name, String msg,
-      {exception, StackTrace? stackTrace}) async {
+      {exception, StackTrace? stackTrace, String? severity}) async {
     _checkInstance();
 
     if ((_instance!._logInDebugMode && kDebugMode) ||
@@ -176,13 +197,10 @@ class Log {
       developer.log(msg, name: name, error: exception, stackTrace: stackTrace);
     }
 
-    if ((_instance!._enableFirebaseCrashlyticsInDebug && kDebugMode) ||
-        (_instance!._enableFirebaseCrashlyticsInRelease && kReleaseMode)) {
-      await FirebaseCrashlytics.instance.log('$name => $msg');
+    await _instance!._errorLoggingProvider.log('$name => $msg', severity: severity);
 
-      if (exception != null || stackTrace != null) {
-        await FirebaseCrashlytics.instance.recordError(exception, stackTrace);
-      }
+    if (exception != null || stackTrace != null) {
+      await _instance!._errorLoggingProvider.recordError(exception, stackTrace, severity: severity);
     }
   }
 }
