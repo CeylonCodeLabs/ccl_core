@@ -1,4 +1,5 @@
 import 'dart:developer' as developer;
+import 'dart:isolate';
 
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
@@ -32,6 +33,43 @@ class Log {
       this._enableFirebaseCrashlyticsInDebug,
       this._enableFirebaseCrashlyticsInRelease) {
     _instance = this;
+  }
+
+  /// Sets up global error handlers to catch and report errors using Firebase Crashlytics.
+  ///
+  /// This method configures three types of error handlers:
+  /// 1. `FlutterError.onError`: Catches errors that occur within the Flutter framework.
+  /// 2. `PlatformDispatcher.instance.onError`: Catches errors that occur outside of the Flutter framework in the main isolate.
+  /// 3. `Isolate.current.addErrorListener`: Catches errors from other isolates.
+  static void setup() {
+    FlutterError.onError = (errorDetails) {
+      // In debug mode, Flutter itself prints errors to the console.
+      // In release mode, we rely on Crashlytics.
+      if (kDebugMode) {
+        FlutterError.dumpErrorToConsole(errorDetails);
+      }
+      FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+    };
+
+    // Catch errors that occur outside of the Flutter framework in the Isolate that the Flutter app runs on.
+    // This is crucial for catching errors like those from platform channels or other asynchronous code.
+    PlatformDispatcher.instance.onError = (error, stack) {
+      FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+      return true; // Return true to indicate that the error has been handled.
+    };
+
+    // Listen for errors from other isolates that might be spawned by the app.
+    // This ensures that errors from background tasks are also captured.
+    Isolate.current.addErrorListener(
+      RawReceivePort((pair) async {
+        final List<dynamic> errorAndStacktrace = pair;
+        await FirebaseCrashlytics.instance.recordError(
+          errorAndStacktrace.first,
+          errorAndStacktrace.last,
+          fatal: true,
+        );
+      }).sendPort,
+    );
   }
 
   /// Initialize [Log] instance
@@ -121,6 +159,9 @@ class Log {
     final name = 'ERROR: $tag$ref';
     _log(name, msg, exception: exception, stackTrace: stackTrace);
   }
+
+  static Future<void> setUserIdentifier(String identifier) =>
+      FirebaseCrashlytics.instance.setUserIdentifier(identifier);
 
   static Future<void> setFirebaseCustomKey(String key, Object value) =>
       FirebaseCrashlytics.instance.setCustomKey(key, value);
