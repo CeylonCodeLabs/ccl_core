@@ -14,11 +14,15 @@ dependencies:
   firebase_crashlytics: '>=4.0.0 <5.0.0'
   intl: '>=0.17.0 <0.21.0'
   googleapis: ^14.0.0
+  googleapis_auth: ^2.0.0
+  logger: ^2.6.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
+  mockito: ^5.4.6
+  build_runner: ^2.5.4
 
 scripts:
   gen_docs: git-chglog -o CHANGELOG.md && git log --pretty="- %s (%an)" $(git describe --tags --abbrev=0 $(git rev-list --tags --skip=1 --max-count=1))..HEAD > release_note.txt
