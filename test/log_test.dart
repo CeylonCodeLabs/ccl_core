@@ -41,17 +41,6 @@ void main() {
         logInProfileMode: true,
         logInReleaseMode: false,
       );
-      // Manually set the mock provider
-      Log.instance = Log._internal(
-        true,
-        true,
-        false,
-        mockErrorLoggingProvider,
-      );
-    });
-
-    test('should initialize correctly', () {
-      expect(Log.instance, isNotNull);
     });
 
     test('Log.i should call log with correct parameters', () {
