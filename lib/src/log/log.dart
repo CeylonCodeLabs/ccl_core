@@ -47,7 +47,12 @@ class Log {
   final bool _logInProfileMode;
   final bool _logInReleaseMode;
   final ErrorLoggingProvider _errorLoggingProvider;
-  static final Logger _logger = Logger();
+  static final Logger _logger = Logger(
+    printer: PrettyPrinter(
+      printEmojis: false,
+      dateTimeFormat: DateTimeFormat.dateAndTime,
+    ),
+  );
 
   /// Private constructor for internal instantiation.
   ///
