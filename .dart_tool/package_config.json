@@ -2,100 +2,268 @@
   "configVersion": 2,
   "packages": [
     {
+      "name": "_discoveryapis_commons",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/_discoveryapis_commons-1.0.7",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "_fe_analyzer_shared",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/_fe_analyzer_shared-85.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.5"
+    },
+    {
       "name": "_flutterfire_internals",
-      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/_flutterfire_internals-1.3.41",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/_flutterfire_internals-1.3.49",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
     {
-      "name": "async",
-      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/async-2.11.0",
+      "name": "analyzer",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/analyzer-7.5.9",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "3.5"
+    },
+    {
+      "name": "args",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/args-2.7.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
+    },
+    {
+      "name": "async",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/async-2.13.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
     },
     {
       "name": "boolean_selector",
-      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/boolean_selector-2.1.1",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/boolean_selector-2.1.2",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "3.1"
+    },
+    {
+      "name": "build",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/build-2.5.4",
+      "packageUri": "lib/",
+      "languageVersion": "3.7"
+    },
+    {
+      "name": "build_config",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/build_config-1.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.6"
+    },
+    {
+      "name": "build_daemon",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/build_daemon-4.0.4",
+      "packageUri": "lib/",
+      "languageVersion": "3.6"
+    },
+    {
+      "name": "build_resolvers",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/build_resolvers-2.5.4",
+      "packageUri": "lib/",
+      "languageVersion": "3.7"
+    },
+    {
+      "name": "build_runner",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/build_runner-2.5.4",
+      "packageUri": "lib/",
+      "languageVersion": "3.7"
+    },
+    {
+      "name": "build_runner_core",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/build_runner_core-9.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.7"
+    },
+    {
+      "name": "built_collection",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/built_collection-5.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "built_value",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/built_value-8.10.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
     },
     {
       "name": "characters",
-      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/characters-1.3.0",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/characters-1.4.0",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "checked_yaml",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/checked_yaml-2.0.4",
+      "packageUri": "lib/",
+      "languageVersion": "3.8"
     },
     {
       "name": "clock",
-      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/clock-1.1.1",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/clock-1.1.2",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "code_builder",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/code_builder-4.10.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.5"
     },
     {
       "name": "collection",
-      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/collection-1.18.0",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/collection-1.19.1",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "convert",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/convert-3.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "crypto",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/crypto-3.0.6",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "dart_style",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/dart_style-3.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.7"
     },
     {
       "name": "fake_async",
-      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/fake_async-1.3.1",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/fake_async-1.3.3",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "3.3"
+    },
+    {
+      "name": "file",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/file-7.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
     },
     {
       "name": "firebase_core",
-      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/firebase_core-3.4.0",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/firebase_core-3.10.0",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
     {
       "name": "firebase_core_platform_interface",
-      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/firebase_core_platform_interface-5.2.1",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/firebase_core_platform_interface-5.4.0",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
     {
       "name": "firebase_core_web",
-      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/firebase_core_web-2.17.5",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/firebase_core_web-2.19.0",
       "packageUri": "lib/",
-      "languageVersion": "3.2"
+      "languageVersion": "3.4"
     },
     {
       "name": "firebase_crashlytics",
-      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/firebase_crashlytics-4.1.0",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/firebase_crashlytics-4.3.0",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
     {
       "name": "firebase_crashlytics_platform_interface",
-      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/firebase_crashlytics_platform_interface-3.6.41",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/firebase_crashlytics_platform_interface-3.8.0",
       "packageUri": "lib/",
       "languageVersion": "3.2"
+    },
+    {
+      "name": "fixnum",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/fixnum-1.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.1"
     },
     {
       "name": "flutter",
       "rootUri": "file:///Users/pasan/Development/SDK/flutter/packages/flutter",
       "packageUri": "lib/",
-      "languageVersion": "3.3"
+      "languageVersion": "3.7"
     },
     {
       "name": "flutter_lints",
-      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/flutter_lints-4.0.0",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/flutter_lints-6.0.0",
       "packageUri": "lib/",
-      "languageVersion": "3.1"
+      "languageVersion": "3.8"
     },
     {
       "name": "flutter_test",
       "rootUri": "file:///Users/pasan/Development/SDK/flutter/packages/flutter_test",
       "packageUri": "lib/",
-      "languageVersion": "3.3"
+      "languageVersion": "3.7"
     },
     {
       "name": "flutter_web_plugins",
       "rootUri": "file:///Users/pasan/Development/SDK/flutter/packages/flutter_web_plugins",
       "packageUri": "lib/",
+      "languageVersion": "3.7"
+    },
+    {
+      "name": "frontend_server_client",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/frontend_server_client-4.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "glob",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/glob-2.1.3",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
+    },
+    {
+      "name": "google_identity_services_web",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/google_identity_services_web-0.3.3+1",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "googleapis",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/googleapis-14.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.6"
+    },
+    {
+      "name": "googleapis_auth",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/googleapis_auth-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.6"
+    },
+    {
+      "name": "graphs",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/graphs-2.3.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "http",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/http-1.4.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "http_multi_server",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/http_multi_server-3.2.2",
+      "packageUri": "lib/",
       "languageVersion": "3.2"
+    },
+    {
+      "name": "http_parser",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/http_parser-4.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
     },
     {
       "name": "intl",
@@ -104,14 +272,32 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "io",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/io-1.0.5",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "js",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/js-0.7.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.7"
+    },
+    {
+      "name": "json_annotation",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/json_annotation-4.9.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "leak_tracker",
-      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/leak_tracker-10.0.4",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/leak_tracker-10.0.9",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
     {
       "name": "leak_tracker_flutter_testing",
-      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/leak_tracker_flutter_testing-3.0.3",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/leak_tracker_flutter_testing-3.0.9",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
@@ -123,33 +309,63 @@
     },
     {
       "name": "lints",
-      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/lints-4.0.0",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/lints-6.0.0",
       "packageUri": "lib/",
-      "languageVersion": "3.1"
+      "languageVersion": "3.8"
+    },
+    {
+      "name": "logger",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/logger-2.6.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
+      "name": "logging",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/logging-1.3.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
     },
     {
       "name": "matcher",
-      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/matcher-0.12.16+1",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/matcher-0.12.17",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.4"
     },
     {
       "name": "material_color_utilities",
-      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/material_color_utilities-0.8.0",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/material_color_utilities-0.11.1",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "meta",
-      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/meta-1.12.0",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/meta-1.16.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
-      "name": "path",
-      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/path-1.9.0",
+      "name": "mime",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/mime-2.0.0",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.2"
+    },
+    {
+      "name": "mockito",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/mockito-5.4.6",
+      "packageUri": "lib/",
+      "languageVersion": "3.7"
+    },
+    {
+      "name": "package_config",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/package_config-2.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "path",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/path-1.9.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
     },
     {
       "name": "plugin_platform_interface",
@@ -158,46 +374,100 @@
       "languageVersion": "3.0"
     },
     {
-      "name": "sky_engine",
-      "rootUri": "file:///Users/pasan/Development/SDK/flutter/bin/cache/pkg/sky_engine",
-      "packageUri": "lib/",
-      "languageVersion": "3.2"
-    },
-    {
-      "name": "source_span",
-      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/source_span-1.10.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.18"
-    },
-    {
-      "name": "stack_trace",
-      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/stack_trace-1.11.1",
-      "packageUri": "lib/",
-      "languageVersion": "2.18"
-    },
-    {
-      "name": "stream_channel",
-      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/stream_channel-2.1.2",
-      "packageUri": "lib/",
-      "languageVersion": "2.19"
-    },
-    {
-      "name": "string_scanner",
-      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/string_scanner-1.2.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.18"
-    },
-    {
-      "name": "term_glyph",
-      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/term_glyph-1.2.1",
+      "name": "pool",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/pool-1.5.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
-      "name": "test_api",
-      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/test_api-0.7.0",
+      "name": "pub_semver",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/pub_semver-2.2.0",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "pubspec_parse",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/pubspec_parse-1.5.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.6"
+    },
+    {
+      "name": "shelf",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/shelf-1.4.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "shelf_web_socket",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/shelf_web_socket-3.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.5"
+    },
+    {
+      "name": "sky_engine",
+      "rootUri": "file:///Users/pasan/Development/SDK/flutter/bin/cache/pkg/sky_engine",
+      "packageUri": "lib/",
+      "languageVersion": "3.7"
+    },
+    {
+      "name": "source_gen",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/source_gen-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.6"
+    },
+    {
+      "name": "source_span",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/source_span-1.10.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.1"
+    },
+    {
+      "name": "stack_trace",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/stack_trace-1.12.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "stream_channel",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/stream_channel-2.1.4",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
+    },
+    {
+      "name": "stream_transform",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/stream_transform-2.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.1"
+    },
+    {
+      "name": "string_scanner",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/string_scanner-1.4.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.1"
+    },
+    {
+      "name": "term_glyph",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/term_glyph-1.2.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.1"
+    },
+    {
+      "name": "test_api",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/test_api-0.7.4",
+      "packageUri": "lib/",
+      "languageVersion": "3.5"
+    },
+    {
+      "name": "timing",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/timing-1.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "typed_data",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/typed_data-1.4.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.5"
     },
     {
       "name": "vector_math",
@@ -207,15 +477,39 @@
     },
     {
       "name": "vm_service",
-      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/vm_service-14.2.1",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/vm_service-15.0.0",
       "packageUri": "lib/",
       "languageVersion": "3.3"
     },
     {
+      "name": "watcher",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/watcher-1.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.1"
+    },
+    {
       "name": "web",
-      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/web-0.5.1",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/web-1.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "web_socket",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/web_socket-1.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "web_socket_channel",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/web_socket_channel-3.0.3",
       "packageUri": "lib/",
       "languageVersion": "3.3"
+    },
+    {
+      "name": "yaml",
+      "rootUri": "file:///Users/pasan/.pub-cache/hosted/pub.dev/yaml-3.1.3",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
     },
     {
       "name": "ccl_core",
@@ -224,10 +518,9 @@
       "languageVersion": "3.2"
     }
   ],
-  "generated": "2024-09-05T09:16:12.192705Z",
   "generator": "pub",
-  "generatorVersion": "3.4.4",
+  "generatorVersion": "3.8.1",
   "flutterRoot": "file:///Users/pasan/Development/SDK/flutter",
-  "flutterVersion": "3.22.3",
+  "flutterVersion": "3.32.6",
   "pubCache": "file:///Users/pasan/.pub-cache"
 }
