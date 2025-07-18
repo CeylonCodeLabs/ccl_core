@@ -1,6 +1,6 @@
 name: ccl_core
 description: "CeylonCodeLabs Core Extension in favor of flutter_support_pack"
-version: 0.6.1
+version: 0.6.2
 homepage: https://github.com/CeylonCodeLabs/ccl_packages
 
 environment:
@@ -15,7 +15,7 @@ dependencies:
   intl: '>=0.17.0 <0.21.0'
   googleapis: '>=14.0.0 <15.0.0'
   googleapis_auth: '>=2.0.0 <3.0.0'
-  logger: '>=2.6.0 <3.0.0'
+  logger: '>=1.1.0 <3.0.0'
 
 dev_dependencies:
   flutter_test:
