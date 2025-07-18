@@ -1,4 +1,20 @@
 
+<a name="v0.6.4"></a>
+## [v0.6.4](https://github.com/pasaneramusugoda/flutter_support_pack/compare/v0.6.3...v0.6.4) (2025-07-18)
+
+### Chore
+
+* **Release:** v0.6.4
+
+### Docs
+
+* **ReadMe:** Updates
+
+### Feat
+
+* **Log:** Introduce `prettyLog` option
+
+
 <a name="v0.6.3"></a>
 ## [v0.6.3](https://github.com/pasaneramusugoda/flutter_support_pack/compare/v0.6.2...v0.6.3) (2025-07-18)
 
