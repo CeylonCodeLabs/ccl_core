@@ -1,3 +1,3 @@
-- chore(Release): v0.6.2 (Pasan Eramusugoda)
-- feat(Settings): Adds Flutter related configurations (Pasan Eramusugoda)
-- docs(Release): Updates (Pasan Eramusugoda)
+- chore(Release): v0.6.3 (Pasan Eramusugoda)
+- feat(Log): Custom log output for multi-line messages (Pasan Eramusugoda)
+- docs(ReadMe): Updates (Pasan Eramusugoda)
