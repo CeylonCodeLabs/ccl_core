@@ -23,6 +23,7 @@ dev_dependencies:
   flutter_lints: ^6.0.0
   mockito: ^5.4.6
   build_runner: ^2.5.4
+  dart_code_metrics_presets: ^2.24.0
 
 scripts:
   gen_docs: git-chglog -o CHANGELOG.md && git log --pretty="- %s (%an)" $(git describe --tags --abbrev=0 $(git rev-list --tags --skip=1 --max-count=1))..HEAD > release_note.txt

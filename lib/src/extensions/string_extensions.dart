@@ -59,7 +59,13 @@ extension NullStringExtension on String? {
   bool get isNotNullOrEmpty => this != null && (this?.isNotEmpty ?? false);
 
   /// Returns `true` if the string is not null and not empty.
-  bool get isNotNullAndNotEmpty => this != null && (this?.isNotEmpty ?? false);
+  bool get isNotNullAndNotEmpty {
+    final S = this;
+    if (S != null && S.isNotEmpty) {
+      return true;
+    }
+    return false;
+  }
 
   /// Returns `true` if the string is null or empty.
   bool get isNullOrEmpty => this == null || (this?.isEmpty ?? true);
