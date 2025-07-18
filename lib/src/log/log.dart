@@ -6,6 +6,7 @@ import 'package:googleapis/logging/v2.dart';
 import 'package:googleapis_auth/auth_io.dart';
 import 'package:logger/logger.dart';
 
+import 'ccl_log_output.dart';
 import 'error_logging_provider.dart';
 import 'error_logging_provider_factory.dart';
 
@@ -50,8 +51,10 @@ class Log {
   static final Logger _logger = Logger(
     printer: PrettyPrinter(
       printEmojis: false,
+      methodCount: 0,
       dateTimeFormat: DateTimeFormat.dateAndTime,
     ),
+    output: CclLogOutput(),
   );
 
   /// Private constructor for internal instantiation.

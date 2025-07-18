@@ -44,26 +44,26 @@ void main() {
     });
 
     test('Log.i should call log with correct parameters', () {
-      Log.i('TestTag', 'Test message');
+      Log.i('TestTag', 'Test message\nSecond line\nThird line');
       expect(mockErrorLoggingProvider.lastMessage,
-          contains('TestTag => Test message'));
+          contains('TestTag => Test message\nSecond line\nThird line'));
       expect(mockErrorLoggingProvider.lastLevel, Level.info);
     });
 
     test('Log.d should call log with correct parameters', () {
-      Log.d('TestTag', 'Test message');
+      Log.d('TestTag', 'Test message\nSecond line\nThird line');
       expect(mockErrorLoggingProvider.lastMessage,
-          contains('TestTag => Test message'));
+          contains('TestTag => Test message\nSecond line\nThird line'));
       expect(mockErrorLoggingProvider.lastLevel, Level.debug);
     });
 
     test('Log.w should call log and recordError with correct parameters', () {
       final exception = Exception('Test exception');
       final stackTrace = StackTrace.current;
-      Log.w('TestTag', 'Test message',
+      Log.w('TestTag', 'Test message\nSecond line\nThird line',
           exception: exception, stackTrace: stackTrace);
       expect(mockErrorLoggingProvider.lastMessage,
-          contains('TestTag => Test message'));
+          contains('TestTag => Test message\nSecond line\nThird line'));
       expect(mockErrorLoggingProvider.lastLevel, Level.warning);
       expect(mockErrorLoggingProvider.lastException, exception);
       expect(mockErrorLoggingProvider.lastStackTrace, stackTrace);
@@ -72,10 +72,10 @@ void main() {
     test('Log.e should call log and recordError with correct parameters', () {
       final exception = Exception('Test exception');
       final stackTrace = StackTrace.current;
-      Log.e('TestTag', 'Test message',
+      Log.e('TestTag', 'Test message\nSecond line\nThird line',
           exception: exception, stackTrace: stackTrace);
       expect(mockErrorLoggingProvider.lastMessage,
-          contains('TestTag => Test message'));
+          contains('TestTag => Test message\nSecond line\nThird line'));
       expect(mockErrorLoggingProvider.lastLevel, Level.error);
       expect(mockErrorLoggingProvider.lastException, exception);
       expect(mockErrorLoggingProvider.lastStackTrace, stackTrace);
