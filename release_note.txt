@@ -1,4 +1,2 @@
-- chore(Release): v0.5.0 (Pasan Eramusugoda)
-- chore(Deps): Upgrade flutter_lints to v6.0.0 (Pasan Eramusugoda)
-- feat(Log): Integrate Firebase Crashlytics for global error reporting (Pasan Eramusugoda)
-- docs(ReadMe): Updates (Pasan Eramusugoda)
+- chore(Release): v0.6.1 (Pasan Eramusugoda)
+- feat(String): Add String extensions and tests (Pasan Eramusugoda)

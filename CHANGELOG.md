@@ -1,4 +1,42 @@
 
+<a name="v0.6.1"></a>
+## [v0.6.1](https://github.com/pasaneramusugoda/flutter_support_pack/compare/v0.6.0...v0.6.1) (2025-07-18)
+
+### Chore
+
+* **Release:** v0.6.1
+
+### Feat
+
+* **String:** Add String extensions and tests
+
+
+<a name="v0.6.0"></a>
+## [v0.6.0](https://github.com/pasaneramusugoda/flutter_support_pack/compare/v0.5.0...v0.6.0) (2025-07-16)
+
+### Chore
+
+* **Release:** v0.6.0
+
+### Docs
+
+* **Release:** Updates
+
+### Feat
+
+* **Log:** Integrate logger package and enhance functionality
+
+### Fix
+
+* **pubspec:** Update intl version constraint
+
+### Refactor
+
+* Use googleapis package for Google Cloud Logging
+* **Log:** Update Logger configuration
+* **Tests:** Remove redundant Log.instance setup
+
+
 <a name="v0.5.0"></a>
 ## [v0.5.0](https://github.com/pasaneramusugoda/flutter_support_pack/compare/v0.4.3...v0.5.0) (2025-07-15)
 
