@@ -44,6 +44,7 @@ import 'error_logging_provider_factory.dart';
 /// {@category Logging}
 class Log {
   static Log? _instance;
+  final bool _prettyLog;
   final bool _logInDebugMode;
   final bool _logInProfileMode;
   final bool _logInReleaseMode;
@@ -61,6 +62,7 @@ class Log {
   ///
   /// Initializes the logging preferences and the error logging provider.
   Log._internal(
+    this._prettyLog,
     this._logInDebugMode,
     this._logInProfileMode,
     this._logInReleaseMode,
@@ -197,6 +199,7 @@ class Log {
   ///   runApp(MyApp());
   /// }
   static Future<void> init({
+    bool prettyLog = true,
     bool logInDebugMode = true,
     bool logInProfileMode = true,
     bool logInReleaseMode = false,
@@ -216,6 +219,7 @@ class Log {
     }
 
     _instance = Log._internal(
+      prettyLog,
       logInDebugMode,
       logInProfileMode,
       logInReleaseMode,
@@ -392,20 +396,23 @@ class Log {
     if ((_instance!._logInDebugMode && kDebugMode) ||
         (_instance!._logInProfileMode && kProfileMode) ||
         (_instance!._logInReleaseMode && kReleaseMode)) {
-      _logger.log(
-        level,
-        '$name: $message',
-        time: DateTime.now(),
-        error: exception,
-        stackTrace: stackTrace,
-      );
-      developer.log(
-        message,
-        name: name,
-        error: exception,
-        stackTrace: stackTrace,
-        level: level.value,
-      );
+      if(_instance!._prettyLog) {
+        _logger.log(
+          level,
+          '$name: $message',
+          time: DateTime.now(),
+          error: exception,
+          stackTrace: stackTrace,
+        );
+      } else {
+        developer.log(
+          message,
+          name: name,
+          error: exception,
+          stackTrace: stackTrace,
+          level: level.value,
+        );
+      }
     }
 
     await _instance!._errorLoggingProvider
