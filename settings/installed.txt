@@ -1,0 +1,16 @@
+Dart
+cn.neday.excavator
+com.fly-mix.flr
+com.haulmont.jpab
+com.intellij.marketplace
+com.robohorse.robopojogenerator
+com.ruiyu.ruiyu
+com.thoughtworks.gauge
+com.wakatime.intellij.plugin
+commit-message-helper-idea-plugin
+de.mariushoefler.flutter_enhancement_suite
+io.flutter
+mobi.hsz.idea.gitignore
+org.intellij.plugins.markdown
+org.jetbrains.kotlin
+pl.pszklarska.pubversionchecker

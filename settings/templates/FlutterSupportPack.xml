@@ -1,0 +1,36 @@
+<templateSet group="FlutterSupportPack">
+  <template name="logd" value="Log.d(tag, '$message$', references: ['$methodName$']);" description="Log debug" toReformat="false" toShortenFQNames="true">
+    <variable name="message" expression="&quot;message&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="methodName" expression="dartMethodName()" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="DART_STATEMENT" value="true" />
+    </context>
+  </template>
+  <template name="tag" value="static const String tag = '$className$';$END$" description="Create const tag" toReformat="false" toShortenFQNames="true">
+    <variable name="className" expression="dartClassName()" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="DART" value="true" />
+    </context>
+  </template>
+  <template name="loge" value="Log.e(tag, '$message$', references: ['$methodName$']);" description="Log error" toReformat="false" toShortenFQNames="true">
+    <variable name="message" expression="&quot;message&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="methodName" expression="dartMethodName()" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="DART_STATEMENT" value="true" />
+    </context>
+  </template>
+  <template name="logi" value="Log.i(tag, '$message$', references: ['$methodName$']);" description="Log info" toReformat="false" toShortenFQNames="true">
+    <variable name="message" expression="&quot;message&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="methodName" expression="dartMethodName()" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="DART_STATEMENT" value="true" />
+    </context>
+  </template>
+  <template name="logw" value="Log.w(tag, '$message$', references: ['$methodName$']);" description="Log warning" toReformat="false" toShortenFQNames="true">
+    <variable name="message" expression="&quot;message&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="methodName" expression="dartMethodName()" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="DART_STATEMENT" value="true" />
+    </context>
+  </template>
+</templateSet>

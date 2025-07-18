@@ -1,0 +1,9 @@
+<templateSet group="Flutter">
+  <template name="streamBldr" value="StreamBuilder(stream: $STREAM$, builder: (BuildContext context, AsyncSnapshot snapshot) {if(snapshot.hasError) return $ERRORWIDGET$; switch (snapshot.connectionState) {case ConnectionState.none: return $DEFAULTWIDGET$;case ConnectionState.waiting: return $LOADINGWIDGET$;case ConnectionState.active: return $ACTIVEWIDGET$;case ConnectionState.done: return $FINISHEDWIDGET$;}return null; // unreachable}, )," description="Create StreamBuilder" toReformat="true" toShortenFQNames="true">
+    <variable name="STREAM" expression="&quot;stream&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="DEFAULTWIDGET" expression="&quot;ConnectionNone&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="LOADINGWIDGET" expression="&quot;ConnectionWaiting&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="ACTIVEWIDGET" expression="&quot;ConnectionActive&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="FINISHEDWIDGET" expression="&quot;ConnectionDone&quot;" defaultValue="" alwaysStopAt="true" />
+  </template>
+</templateSet>
