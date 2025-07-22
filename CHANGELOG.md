@@ -1,4 +1,20 @@
 
+<a name="v0.6.5"></a>
+## [v0.6.5](https://github.com/pasaneramusugoda/flutter_support_pack/compare/v0.6.4...v0.6.5) (2025-07-22)
+
+### Build
+
+* **Deps:** Bump logger from 1.1.0 to 2.4.0
+
+### Chore
+
+* **Release:** v0.6.5
+
+### Docs
+
+* **ReadMe:** Updates
+
+
 <a name="v0.6.4"></a>
 ## [v0.6.4](https://github.com/pasaneramusugoda/flutter_support_pack/compare/v0.6.3...v0.6.4) (2025-07-18)
 

@@ -1,3 +1,3 @@
-- chore(Release): v0.6.4 (Pasan Eramusugoda)
-- feat(Log): Introduce `prettyLog` option (Pasan Eramusugoda)
+- chore(Release): v0.6.5 (Pasan Eramusugoda)
+- build(Deps): Bump logger from 1.1.0 to 2.4.0 (Pasan Eramusugoda)
 - docs(ReadMe): Updates (Pasan Eramusugoda)
