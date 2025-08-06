@@ -1,4 +1,20 @@
 
+<a name="v0.7.0"></a>
+## [v0.7.0](https://github.com/pasaneramusugoda/flutter_support_pack/compare/v0.6.5...v0.7.0) (2025-08-06)
+
+### Build
+
+* **Deps:** Bump firebase_core to ^3.0.0 and firebase_crashlytics to ^4.3.8
+
+### Chore
+
+* **Release:** v0.7.0
+
+### Docs
+
+* **ReadMe:** Updates
+
+
 <a name="v0.6.5"></a>
 ## [v0.6.5](https://github.com/pasaneramusugoda/flutter_support_pack/compare/v0.6.4...v0.6.5) (2025-07-22)
 
