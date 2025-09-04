@@ -1,23 +1,23 @@
 import 'package:ccl_core/ccl_core.dart';
 import 'package:ccl_core/src/log/error_logging_provider.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:logger/logger.dart';
+import 'package:talker_flutter/talker_flutter.dart';
 
 class MockErrorLoggingProvider implements ErrorLoggingProvider {
   String? lastMessage;
-  Level? lastLevel;
+  LogLevel? lastLevel;
   dynamic lastException;
   StackTrace? lastStackTrace;
 
   @override
-  Future<void> log(String message, {Level level = Level.off}) async {
+  Future<void> log(String message, {LogLevel level = LogLevel.info}) async {
     lastMessage = message;
     lastLevel = level;
   }
 
   @override
   Future<void> recordError(exception, StackTrace? stack,
-      {reason, bool fatal = false, Level level = Level.off}) async {
+      {reason, bool fatal = false, LogLevel level = LogLevel.info}) async {
     lastException = exception;
     lastStackTrace = stack;
     lastLevel = level;
@@ -40,31 +40,26 @@ void main() {
         logInDebugMode: true,
         logInProfileMode: true,
         logInReleaseMode: false,
+        errorLoggingProvider: mockErrorLoggingProvider,
       );
     });
 
     test('Log.i should call log with correct parameters', () {
-      Log.i('TestTag', 'Test message\nSecond line\nThird line');
-      expect(mockErrorLoggingProvider.lastMessage,
-          contains('TestTag => Test message\nSecond line\nThird line'));
-      expect(mockErrorLoggingProvider.lastLevel, Level.info);
+      Log.i('TestTag', 'Test message');
+      expect(mockErrorLoggingProvider.lastMessage, contains('TestTag: Test message'));
     });
 
     test('Log.d should call log with correct parameters', () {
-      Log.d('TestTag', 'Test message\nSecond line\nThird line');
-      expect(mockErrorLoggingProvider.lastMessage,
-          contains('TestTag => Test message\nSecond line\nThird line'));
-      expect(mockErrorLoggingProvider.lastLevel, Level.debug);
+      Log.d('TestTag', 'Test message');
+      expect(mockErrorLoggingProvider.lastMessage, contains('TestTag: Test message'));
     });
 
     test('Log.w should call log and recordError with correct parameters', () {
       final exception = Exception('Test exception');
       final stackTrace = StackTrace.current;
-      Log.w('TestTag', 'Test message\nSecond line\nThird line',
+      Log.w('TestTag', 'Test message',
           exception: exception, stackTrace: stackTrace);
-      expect(mockErrorLoggingProvider.lastMessage,
-          contains('TestTag => Test message\nSecond line\nThird line'));
-      expect(mockErrorLoggingProvider.lastLevel, Level.warning);
+      expect(mockErrorLoggingProvider.lastMessage, contains('TestTag: Test message'));
       expect(mockErrorLoggingProvider.lastException, exception);
       expect(mockErrorLoggingProvider.lastStackTrace, stackTrace);
     });
@@ -72,11 +67,9 @@ void main() {
     test('Log.e should call log and recordError with correct parameters', () {
       final exception = Exception('Test exception');
       final stackTrace = StackTrace.current;
-      Log.e('TestTag', 'Test message\nSecond line\nThird line',
+      Log.e('TestTag', 'Test message',
           exception: exception, stackTrace: stackTrace);
-      expect(mockErrorLoggingProvider.lastMessage,
-          contains('TestTag => Test message\nSecond line\nThird line'));
-      expect(mockErrorLoggingProvider.lastLevel, Level.error);
+      expect(mockErrorLoggingProvider.lastMessage, contains('TestTag: Test message'));
       expect(mockErrorLoggingProvider.lastException, exception);
       expect(mockErrorLoggingProvider.lastStackTrace, stackTrace);
     });

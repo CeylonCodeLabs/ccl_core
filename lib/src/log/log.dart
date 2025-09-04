@@ -4,9 +4,8 @@ import 'dart:isolate';
 import 'package:flutter/foundation.dart';
 import 'package:googleapis/logging/v2.dart';
 import 'package:googleapis_auth/auth_io.dart';
-import 'package:logger/logger.dart';
+import 'package:talker_flutter/talker_flutter.dart';
 
-import 'ccl_log_output.dart';
 import 'error_logging_provider.dart';
 import 'error_logging_provider_factory.dart';
 
@@ -44,25 +43,16 @@ import 'error_logging_provider_factory.dart';
 /// {@category Logging}
 class Log {
   static Log? _instance;
-  final bool _prettyLog;
   final bool _logInDebugMode;
   final bool _logInProfileMode;
   final bool _logInReleaseMode;
   final ErrorLoggingProvider _errorLoggingProvider;
-  static final Logger _logger = Logger(
-    printer: PrettyPrinter(
-      printEmojis: false,
-      methodCount: 0,
-      dateTimeFormat: DateTimeFormat.dateAndTime,
-    ),
-    output: CclLogOutput(),
-  );
+  static late final Talker _talker;
 
   /// Private constructor for internal instantiation.
   ///
   /// Initializes the logging preferences and the error logging provider.
   Log._internal(
-    this._prettyLog,
     this._logInDebugMode,
     this._logInProfileMode,
     this._logInReleaseMode,
@@ -88,15 +78,10 @@ class Log {
   /// to the console.
   static void setup() {
     FlutterError.onError = (errorDetails) {
-      // In debug mode, Flutter itself prints errors to the console.
-      // In release mode, we rely on the configured error logging provider.
-      if (kDebugMode) {
-        FlutterError.dumpErrorToConsole(errorDetails);
-      }
-      _instance?._errorLoggingProvider.recordError(
+      _talker.handle(
         errorDetails.exception,
         errorDetails.stack,
-        fatal: true,
+        'FlutterError',
       );
     };
 
@@ -104,15 +89,7 @@ class Log {
     // that the Flutter app runs on. This is crucial for catching errors like
     // those from platform channels or other asynchronous code.
     PlatformDispatcher.instance.onError = (error, stack) {
-      _instance?._errorLoggingProvider.recordError(
-        error,
-        stack,
-        fatal: true,
-        level: Level.fatal,
-      );
-
-      // Return true to indicate that the error has been handled and
-      // should not be processed further by default handlers.
+      _talker.handle(error, stack, 'PlatformDispatcher');
       return true;
     };
 
@@ -121,26 +98,12 @@ class Log {
     // are also captured.
     Isolate.current.addErrorListener(
       RawReceivePort((pair) async {
-        // The 'pair' is expected to be a list containing the error and stack trace.
-        if (pair is List<dynamic> && pair.length == 2) {
-          final dynamic error = pair.first;
-          final StackTrace? stackTrace =
-              pair.last is StackTrace ? pair.last as StackTrace : null;
-          await _instance?._errorLoggingProvider.recordError(
-            error,
-            stackTrace,
-            fatal: true,
-            level: Level.fatal,
-          );
-        } else {
-          // Fallback if the pair format is unexpected.
-          await _instance?._errorLoggingProvider.recordError(
-            pair, // Log whatever was received.
-            null,
-            fatal: true,
-            level: Level.fatal,
-          );
-        }
+        final List<dynamic> errorAndStacktrace = pair;
+        _talker.handle(
+          errorAndStacktrace.first,
+          errorAndStacktrace.last,
+          'Isolate',
+        );
       }).sendPort,
     );
   }
@@ -199,7 +162,6 @@ class Log {
   ///   runApp(MyApp());
   /// }
   static Future<void> init({
-    bool prettyLog = true,
     bool logInDebugMode = true,
     bool logInProfileMode = true,
     bool logInReleaseMode = false,
@@ -207,6 +169,7 @@ class Log {
     bool enableFirebaseCrashlyticsInRelease = false,
     String? googleCloudProjectId,
     Map<String, dynamic>? googleServiceJson,
+    ErrorLoggingProvider? errorLoggingProvider,
   }) async {
     // Ensure this is only initialized once.
     if (_instance != null) {
@@ -218,18 +181,24 @@ class Log {
       return;
     }
 
+    final provider = errorLoggingProvider ??
+        await getErrorLoggingProvider(
+          isWebApp: kIsWeb,
+          googleCloudProjectId: googleCloudProjectId ?? '',
+          enableFirebaseCrashlyticsInDebug: enableFirebaseCrashlyticsInDebug,
+          enableFirebaseCrashlyticsInRelease: enableFirebaseCrashlyticsInRelease,
+          googleAuthClient: await _getGoogleAuthClient(googleServiceJson),
+        );
+
     _instance = Log._internal(
-      prettyLog,
       logInDebugMode,
       logInProfileMode,
       logInReleaseMode,
-      await getErrorLoggingProvider(
-        isWebApp: kIsWeb,
-        googleCloudProjectId: googleCloudProjectId ?? '',
-        enableFirebaseCrashlyticsInDebug: enableFirebaseCrashlyticsInDebug,
-        enableFirebaseCrashlyticsInRelease: enableFirebaseCrashlyticsInRelease,
-        googleAuthClient: await _getGoogleAuthClient(googleServiceJson),
-      ),
+      provider,
+    );
+
+    _talker = TalkerFlutter.init(
+      observer: _ErrorLoggingObserver(provider),
     );
   }
 
@@ -329,7 +298,7 @@ class Log {
         ? ' : ${references.join(' => ')}'
         : '';
     final name = '$tag$ref';
-    _log(name, msg, level: Level.info);
+    _log(name, msg, level: LogLevel.info);
   }
 
   /// Logging debug
@@ -337,12 +306,12 @@ class Log {
   /// [tag] page name or class name of the event origins
   /// [msg] log message
   /// [references] more event references such as\n method name or function name for further identification
-  static void d(String tag, String msg, {List<String>? references}) async {
+  static void d(String tag, String msg, {List<String>? references}) {
     final ref = references != null && references.isNotEmpty
         ? ' : ${references.join(' => ')}'
         : '';
     final name = '$tag$ref';
-    _log(name, msg, level: Level.debug);
+    _log(name, msg, level: LogLevel.debug);
   }
 
   /// Logging warning
@@ -353,13 +322,15 @@ class Log {
   /// [exception] an exception detail
   /// [stackTrace] if available pass.\nThis is important when you using firebase crashlytics trace back the error
   static void w(String tag, String msg,
-      {List<String>? references, exception, StackTrace? stackTrace}) async {
+      {List<String>? references, exception, StackTrace? stackTrace}) {
     final ref = references != null && references.isNotEmpty
         ? ' : ${references.join(' => ')}'
         : '';
     final name = '$tag$ref';
     _log(name, msg,
-        exception: exception, stackTrace: stackTrace, level: Level.warning);
+        exception: exception,
+        stackTrace: stackTrace,
+        level: LogLevel.warning);
   }
 
   /// Logging an error
@@ -370,13 +341,15 @@ class Log {
   /// [exception] an exception detail
   /// [stackTrace] if available pass.\nThis is important when you using firebase crashlytics trace back the error
   static void e(String tag, String msg,
-      {List<String>? references, exception, StackTrace? stackTrace}) async {
+      {List<String>? references, exception, StackTrace? stackTrace}) {
     final ref = references != null && references.isNotEmpty
         ? ' : ${references.join(' => ')}'
         : '';
     final name = '$tag$ref';
     _log(name, msg,
-        exception: exception, stackTrace: stackTrace, level: Level.error);
+        exception: exception,
+        stackTrace: stackTrace,
+        level: LogLevel.error);
   }
 
   static Future<void> setUserIdentifier(String identifier) {
@@ -390,37 +363,41 @@ class Log {
   }
 
   static void _log(String name, String message,
-      {exception, StackTrace? stackTrace, Level level = Level.off}) async {
+      {exception,
+      StackTrace? stackTrace,
+      LogLevel level = LogLevel.info}) {
     _checkInstance();
 
     if ((_instance!._logInDebugMode && kDebugMode) ||
         (_instance!._logInProfileMode && kProfileMode) ||
         (_instance!._logInReleaseMode && kReleaseMode)) {
-      if(_instance!._prettyLog) {
-        _logger.log(
-          level,
-          '$name: $message',
-          time: DateTime.now(),
-          error: exception,
-          stackTrace: stackTrace,
-        );
-      } else {
-        developer.log(
-          message,
-          name: name,
-          error: exception,
-          stackTrace: stackTrace,
-          level: level.value,
-        );
-      }
+      _talker.log(
+        '$name: $message',
+        logLevel: level,
+        error: exception,
+        stackTrace: stackTrace,
+      );
     }
+  }
+}
 
-    await _instance!._errorLoggingProvider
-        .log('$name => $message', level: level);
+class _ErrorLoggingObserver extends TalkerObserver {
+  final ErrorLoggingProvider _errorLoggingProvider;
 
-    if (exception != null || stackTrace != null) {
-      await _instance!._errorLoggingProvider
-          .recordError(exception, stackTrace, level: level);
-    }
+  _ErrorLoggingObserver(this._errorLoggingProvider);
+
+  @override
+  void onLog(TalkerData log) {
+    _errorLoggingProvider.log(log.generateLog());
+  }
+
+  @override
+  void onError(TalkerError err) {
+    _errorLoggingProvider.recordError(err.error, err.stackTrace);
+  }
+
+  @override
+  void onException(TalkerException err) {
+    _errorLoggingProvider.recordError(err.exception, err.stackTrace);
   }
 }
