@@ -1,6 +1,6 @@
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
-import 'package:logger/logger.dart';
+import 'package:talker/talker.dart';
 
 import 'error_logging_provider.dart';
 
@@ -9,21 +9,24 @@ class FirebaseErrorLoggingProvider implements ErrorLoggingProvider {
   final bool _enableFirebaseCrashlyticsInDebug;
   final bool _enableFirebaseCrashlyticsInRelease;
 
-  FirebaseErrorLoggingProvider(this._crashlytics,
-      this._enableFirebaseCrashlyticsInDebug,
-      this._enableFirebaseCrashlyticsInRelease);
+  FirebaseErrorLoggingProvider(
+    this._crashlytics,
+    this._enableFirebaseCrashlyticsInDebug,
+    this._enableFirebaseCrashlyticsInRelease,
+  );
 
   @override
-  Future<void> log(String message, {Level? level}) {
+  Future<void> log(String message, {LogLevel level = LogLevel.info}) {
     if ((_enableFirebaseCrashlyticsInDebug && kDebugMode) ||
         (_enableFirebaseCrashlyticsInRelease && kReleaseMode)) {
-      return _crashlytics.log('${level ?? 'INFO'}: $message');
+      return _crashlytics.log('${level}: $message');
     }
     return Future.value();
   }
 
   @override
-  Future<void> recordError(dynamic exception, StackTrace? stack, {bool fatal = false, Level? level}) {
+  Future<void> recordError(dynamic exception, StackTrace? stack,
+      {bool fatal = false, LogLevel level = LogLevel.info}) {
     if ((_enableFirebaseCrashlyticsInDebug && kDebugMode) ||
         (_enableFirebaseCrashlyticsInRelease && kReleaseMode)) {
       return _crashlytics.recordError(exception, stack, fatal: fatal);

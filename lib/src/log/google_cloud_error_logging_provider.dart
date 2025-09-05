@@ -2,7 +2,7 @@ import 'dart:developer' as developer;
 
 import 'package:googleapis/logging/v2.dart' as logging;
 import 'package:googleapis_auth/auth_io.dart';
-import 'package:logger/logger.dart';
+import 'package:talker/talker.dart';
 
 import 'error_logging_provider.dart';
 
@@ -20,13 +20,13 @@ class GoogleCloudErrorLoggingProvider implements ErrorLoggingProvider {
   }
 
   @override
-  Future<void> log(String message, {Level level = Level.info}) async {
+  Future<void> log(String message, {LogLevel level = LogLevel.info}) async {
     await _writeLog(message, level: level);
   }
 
   @override
   Future<void> recordError(dynamic exception, StackTrace? stack,
-      {bool fatal = false, Level level = Level.error}) async {
+      {bool fatal = false, LogLevel level = LogLevel.error}) async {
     await _writeLog(exception.toString(), level: level);
   }
 
@@ -42,7 +42,7 @@ class GoogleCloudErrorLoggingProvider implements ErrorLoggingProvider {
     // You can add custom keys as labels to the log entries.
   }
 
-  Future<void> _writeLog(String message, {Level level = Level.info}) async {
+  Future<void> _writeLog(String message, {LogLevel level = LogLevel.info}) async {
     final entry = logging.LogEntry()
       ..logName = 'projects/$projectId/logs/flutter_app'
       ..resource = (logging.MonitoredResource()..type = 'global')
@@ -63,17 +63,17 @@ class GoogleCloudErrorLoggingProvider implements ErrorLoggingProvider {
     }
   }
 
-  String _getSeverity(Level level) {
+  String _getSeverity(LogLevel level) {
     switch (level) {
-      case Level.debug:
+      case LogLevel.debug:
         return 'DEBUG';
-      case Level.info:
+      case LogLevel.info:
         return 'INFO';
-      case Level.warning:
+      case LogLevel.warning:
         return 'WARNING';
-      case Level.error:
+      case LogLevel.error:
         return 'ERROR';
-      case Level.fatal:
+      case LogLevel.critical:
         return 'CRITICAL';
       default:
         return 'DEFAULT';

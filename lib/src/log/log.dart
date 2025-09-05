@@ -328,9 +328,7 @@ class Log {
         : '';
     final name = '$tag$ref';
     _log(name, msg,
-        exception: exception,
-        stackTrace: stackTrace,
-        level: LogLevel.warning);
+        exception: exception, stackTrace: stackTrace, level: LogLevel.warning);
   }
 
   /// Logging an error
@@ -347,9 +345,7 @@ class Log {
         : '';
     final name = '$tag$ref';
     _log(name, msg,
-        exception: exception,
-        stackTrace: stackTrace,
-        level: LogLevel.error);
+        exception: exception, stackTrace: stackTrace, level: LogLevel.error);
   }
 
   static Future<void> setUserIdentifier(String identifier) {
@@ -363,9 +359,7 @@ class Log {
   }
 
   static void _log(String name, String message,
-      {exception,
-      StackTrace? stackTrace,
-      LogLevel level = LogLevel.info}) {
+      {exception, StackTrace? stackTrace, LogLevel level = LogLevel.info}) {
     _checkInstance();
 
     if ((_instance!._logInDebugMode && kDebugMode) ||
@@ -374,7 +368,7 @@ class Log {
       _talker.log(
         '$name: $message',
         logLevel: level,
-        error: exception,
+        exception: exception,
         stackTrace: stackTrace,
       );
     }
@@ -388,7 +382,7 @@ class _ErrorLoggingObserver extends TalkerObserver {
 
   @override
   void onLog(TalkerData log) {
-    _errorLoggingProvider.log(log.generateLog());
+    _errorLoggingProvider.log(log.generateTextMessage());
   }
 
   @override

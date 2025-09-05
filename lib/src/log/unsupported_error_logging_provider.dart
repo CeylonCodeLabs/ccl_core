@@ -1,12 +1,12 @@
 import 'dart:developer' as developer;
 
-import 'package:logger/logger.dart';
+import 'package:talker/talker.dart';
 
 import 'error_logging_provider.dart';
 
 class UnsupportedErrorLoggingProvider implements ErrorLoggingProvider {
   @override
-  Future<void> log(String message, {Level level = Level.info}) {
+  Future<void> log(String message, {LogLevel level = LogLevel.info}) {
     developer.log(
       "Unsupported platform: $message",
       level: 1000,
@@ -16,7 +16,7 @@ class UnsupportedErrorLoggingProvider implements ErrorLoggingProvider {
 
   @override
   Future<void> recordError(dynamic exception, StackTrace? stack,
-      {bool fatal = false, Level level = Level.error}) {
+      {bool fatal = false, LogLevel level = LogLevel.error}) {
     developer.log(
       "Unsupported platform: $exception",
       level: 1000,
