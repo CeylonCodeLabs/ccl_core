@@ -1,6 +1,8 @@
 import 'dart:developer' as developer;
 import 'dart:isolate';
 
+import 'package:ccl_core/src/log/dio/dio_log_interceptor.dart';
+import 'package:ccl_core/src/log/dio/dio_logger_settings.dart';
 import 'package:flutter/foundation.dart';
 import 'package:googleapis/logging/v2.dart';
 import 'package:googleapis_auth/auth_io.dart';
@@ -48,6 +50,7 @@ class Log {
   final bool _logInReleaseMode;
   final ErrorLoggingProvider _errorLoggingProvider;
   static late final Talker _talker;
+  static late final DioLogInterceptor _dioLogInterceptor;
 
   /// Private constructor for internal instantiation.
   ///
@@ -60,6 +63,8 @@ class Log {
   ) {
     _instance = this;
   }
+
+  static DioLogInterceptor get dioLogInterceptor => _dioLogInterceptor;
 
   /// Sets up global error handlers to catch and report errors.
   ///
@@ -170,6 +175,7 @@ class Log {
     String? googleCloudProjectId,
     Map<String, dynamic>? googleServiceJson,
     ErrorLoggingProvider? errorLoggingProvider,
+    DioLoggerSettings? dioLoggerSettings,
   }) async {
     // Ensure this is only initialized once.
     if (_instance != null) {
@@ -199,6 +205,10 @@ class Log {
 
     _talker = TalkerFlutter.init(
       observer: _ErrorLoggingObserver(provider),
+    );
+    _dioLogInterceptor = DioLogInterceptor(
+      talker: _talker,
+      settings: dioLoggerSettings ?? const DioLoggerSettings(),
     );
   }
 

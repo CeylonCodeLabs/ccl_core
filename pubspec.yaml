@@ -17,6 +17,7 @@ dependencies:
   googleapis_auth: '>=2.0.0 <3.0.0'
   talker: ^5.0.0
   talker_flutter: ^5.0.0
+  talker_dio_logger: ^5.0.0
 
 dev_dependencies:
   flutter_test:
