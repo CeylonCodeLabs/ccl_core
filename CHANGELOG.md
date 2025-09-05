@@ -1,4 +1,29 @@
 
+<a name="v0.8.0"></a>
+## [v0.8.0](https://github.com/pasaneramusugoda/flutter_support_pack/compare/v0.7.0...v0.8.0) (2025-09-05)
+
+### Build
+
+* **Deps:** Update talker dependencies
+
+### Chore
+
+* **Release:** v0.8.0
+
+### Docs
+
+* **ReadMe:** Updates
+
+### Feat
+
+* Replace logger with talker
+* **Log:** Add DioLogInterceptor for HTTP request logging
+
+### Refactor
+
+* **Logging:** Migrate from `logger` to `talker`
+
+
 <a name="v0.7.0"></a>
 ## [v0.7.0](https://github.com/pasaneramusugoda/flutter_support_pack/compare/v0.6.5...v0.7.0) (2025-08-06)
 
