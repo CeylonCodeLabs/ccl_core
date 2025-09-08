@@ -1,4 +1,20 @@
 
+<a name="v0.8.1"></a>
+## [v0.8.1](https://github.com/pasaneramusugoda/flutter_support_pack/compare/v0.8.0...v0.8.1) (2025-09-08)
+
+### Chore
+
+* **Release:** v0.8.1
+
+### Docs
+
+* **ReadMe:** Updates
+
+### Feat
+
+* **Log:** Allow custom log name
+
+
 <a name="v0.8.0"></a>
 ## [v0.8.0](https://github.com/pasaneramusugoda/flutter_support_pack/compare/v0.7.0...v0.8.0) (2025-09-05)
 
