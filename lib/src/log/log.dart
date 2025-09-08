@@ -167,6 +167,7 @@ class Log {
   ///   runApp(MyApp());
   /// }
   static Future<void> init({
+    String logName = 'App',
     bool logInDebugMode = true,
     bool logInProfileMode = true,
     bool logInReleaseMode = false,
@@ -204,6 +205,12 @@ class Log {
     );
 
     _talker = TalkerFlutter.init(
+      logger: TalkerLogger(
+        output: (message) => developer.log(
+          message,
+          name: logName,
+        ),
+      ),
       observer: _ErrorLoggingObserver(provider),
     );
     _dioLogInterceptor = DioLogInterceptor(
