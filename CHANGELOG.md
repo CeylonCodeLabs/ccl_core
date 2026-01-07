@@ -1,4 +1,20 @@
 
+<a name="v0.8.2"></a>
+## [v0.8.2](https://github.com/pasaneramusugoda/flutter_support_pack/compare/v0.8.1...v0.8.2) (2026-01-07)
+
+### Chore
+
+* **Release:** v0.8.2
+
+### Docs
+
+* **ReadMe:** Updates
+
+### Refactor
+
+* **Log:** Skip Isolate listener setup on Web
+
+
 <a name="v0.8.1"></a>
 ## [v0.8.1](https://github.com/pasaneramusugoda/flutter_support_pack/compare/v0.8.0...v0.8.1) (2025-09-08)
 

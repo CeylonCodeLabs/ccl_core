@@ -1,3 +1,3 @@
-- chore(Release): v0.8.1 (Pasan Eramusugoda)
-- feat(Log): Allow custom log name (Pasan Eramusugoda)
+- chore(Release): v0.8.2 (Pasan Eramusugoda)
+- refactor(Log): Skip Isolate listener setup on Web (Pasan Eramusugoda)
 - docs(ReadMe): Updates (Pasan Eramusugoda)
