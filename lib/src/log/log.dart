@@ -101,16 +101,20 @@ class Log {
     // Listen for errors from other isolates that might be spawned by the app.
     // This ensures that errors from background tasks or separate compute isolates
     // are also captured.
-    Isolate.current.addErrorListener(
-      RawReceivePort((pair) async {
-        final List<dynamic> errorAndStacktrace = pair;
-        _talker.handle(
-          errorAndStacktrace.first,
-          errorAndStacktrace.last,
-          'Isolate',
-        );
-      }).sendPort,
-    );
+    // On the Web, PlatformDispatcher catches global errors, so we skip Isolate setup.
+    if (!kIsWeb) {
+      Isolate.current.addErrorListener(
+        RawReceivePort((pair) async {
+          final List<dynamic> errorAndStacktrace = pair;
+          _talker.handle(
+            errorAndStacktrace.first,
+            errorAndStacktrace.last,
+            'Isolate',
+          );
+        }).sendPort,
+      );
+    }
+
   }
 
   /// Initializes the [Log] instance with specified configurations.
