@@ -1,4 +1,24 @@
 
+<a name="v0.9.0"></a>
+## [v0.9.0](https://github.com/pasaneramusugoda/flutter_support_pack/compare/v0.8.2...v0.9.0) (2026-02-02)
+
+### Build
+
+* **Deps:** Update talker dependencies
+
+### Chore
+
+* **Release:** v0.9.0
+
+### Docs
+
+* **ReadMe:** Updates
+
+### Refactor
+
+* **Log:** Improve testability and logging configuration
+
+
 <a name="v0.8.2"></a>
 ## [v0.8.2](https://github.com/pasaneramusugoda/flutter_support_pack/compare/v0.8.1...v0.8.2) (2026-01-07)
 
