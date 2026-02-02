@@ -10,10 +10,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  firebase_core: '>=3.0.0 <5.0.0'
-  firebase_crashlytics: '>=4.3.8 <6.0.0'
+  firebase_core: '>=4.0.0 <5.0.0'
+  firebase_crashlytics: '>=5.0.0 <6.0.0'
   intl: '>=0.17.0 <0.21.0'
-  googleapis: '>=14.0.0 <15.0.0'
+  googleapis: '>=14.0.0 <16.0.0'
   googleapis_auth: '>=2.0.0 <3.0.0'
   talker: '>=5.0.0 <6.0.0'
   talker_flutter: '>=5.0.0 <6.0.0'
