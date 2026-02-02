@@ -49,8 +49,8 @@ class Log {
   final bool _logInProfileMode;
   final bool _logInReleaseMode;
   final ErrorLoggingProvider _errorLoggingProvider;
-  static late final Talker _talker;
-  static late final DioLogInterceptor _dioLogInterceptor;
+  static late Talker _talker;
+  static late DioLogInterceptor _dioLogInterceptor;
 
   /// Private constructor for internal instantiation.
   ///
@@ -62,6 +62,11 @@ class Log {
     this._errorLoggingProvider,
   ) {
     _instance = this;
+  }
+
+  @visibleForTesting
+  static void reset() {
+    _instance = null;
   }
 
   static DioLogInterceptor get dioLogInterceptor => _dioLogInterceptor;
@@ -114,7 +119,6 @@ class Log {
         }).sendPort,
       );
     }
-
   }
 
   /// Initializes the [Log] instance with specified configurations.
@@ -210,10 +214,11 @@ class Log {
 
     _talker = TalkerFlutter.init(
       logger: TalkerLogger(
-        output: (message) => developer.log(
-          message,
-          name: logName,
+        settings: TalkerLoggerSettings(
+          defaultTitle: logName,
+          maxLineWidth: 200,
         ),
+        formatter: ColoredLoggerFormatter(),
       ),
       observer: _ErrorLoggingObserver(provider),
     );
