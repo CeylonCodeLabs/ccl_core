@@ -1,4 +1,3 @@
-import 'package:ccl_core/ccl_core.dart';
 import 'package:ccl_core/src/log/error_logging_provider.dart';
 import 'package:talker/talker.dart';
 

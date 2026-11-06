@@ -1,6 +1,5 @@
 import 'package:ccl_core/ccl_core.dart';
 import 'package:ccl_core/src/log/log.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'mock_error_logging_provider.dart';
