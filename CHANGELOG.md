@@ -1,4 +1,20 @@
 
+<a name="v0.10.0"></a>
+## [v0.10.0](https://github.com/pasaneramusugoda/flutter_support_pack/compare/v0.9.0...v0.10.0) (2026-11-06)
+
+### Build
+
+* **Deps:** Update dependencies
+
+### Chore
+
+* **Release:** v0.10.0
+
+### Docs
+
+* **ReadMe:** Updates
+
+
 <a name="v0.9.0"></a>
 ## [v0.9.0](https://github.com/pasaneramusugoda/flutter_support_pack/compare/v0.8.2...v0.9.0) (2026-02-02)
 
